@@ -2,7 +2,7 @@ let cart = [];
 const inventory = require("../../data/inventory.json");
 
 exports.getCartNla25 = function(req, res) {
-    res.header("Content-Type: application/json");
+    res.header("Content-Type", "application/json");
     res.send(cart);
 }
 
@@ -30,14 +30,14 @@ exports.addItemNla25 = function(req, res, next)
         const item = {sku: req.body.sku, name: req.body.name, quantity: req.body.quantity, price: req.body.price};
         cart.push(item);
     }
-    res.header("Content-Type: application/json");
+    res.header("Content-Type", "application/json");
     res.send(JSON.stringify(cart));
 }
 
 exports.removeItemNla25 = function(req, res)
 {
     cart = cart.filter((item) => item.sku != req.body.sku);
-    res.header("Content-Type: application/json");
+    res.header("Content-Type", "application/json");
     res.send(JSON.stringify(cart));
 }
 
@@ -52,7 +52,7 @@ exports.checkout = function(req, res)
         })
     });
     cart = [];
-    res.header("Content-Type: application/json");
+    res.header("Content-Type", "application/json");
     const message = {message: "Checkout done successfully"};
     res.send(JSON.stringify(message));
 }
